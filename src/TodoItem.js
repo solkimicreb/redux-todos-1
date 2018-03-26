@@ -11,8 +11,9 @@ export default class TodoItem extends Component {
 
     return (
       <li>
-        <span>{todo.text}</span>
-        <span onClick={this.onClick}> X </span>
+        <strong>{todo.text}:</strong>
+        <span>{todo.description}</span>
+        <strong onClick={this.onClick}> X </strong>
       </li>
     );
   }

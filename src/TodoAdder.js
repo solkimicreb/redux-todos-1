@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 
 export default class TodoAdder extends Component {
-  state = { text: '' };
+  state = { text: '', description: '' };
 
-  onChange = ev => this.setState({ text: ev.target.value });
-  onClick = () => {
-    this.props.addTodo({ text: this.state.text });
-    this.setState({ text: '' });
+  onChange = ev => {
+    this.setState({ [ev.target.name]: ev.target.value });
+  };
+
+  onSubmit = ev => {
+    ev.preventDefault();
+    this.props.addTodo(this.state);
+    this.setState({ text: '', description: '' });
   };
 
   render() {
-    const { text } = this.state;
+    const { text, description } = this.state;
 
     return (
-      <div>
-        <input onChange={this.onChange} value={text} />
-        <button onClick={this.onClick}>Add Todo</button>
-      </div>
+      <form onChange={this.onChange} onSubmit={this.onSubmit}>
+        <label>Title</label>
+        <input name="text" value={text} />
+        <label>Description</label>
+        <input name="description" value={description} />
+        <button>Add Todo</button>
+      </form>
     );
   }
 }
