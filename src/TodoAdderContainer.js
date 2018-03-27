@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import TodoAdder from './TodoAdder';
 import { addTodo } from './actions';
+import { reduxForm } from 'redux-form';
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addTodo: todo => dispatch(addTodo(todo))
-  };
-}
-
-export default connect(undefined, mapDispatchToProps)(TodoAdder);
+export default reduxForm({
+  form: 'newTodo',
+  onSubmit: (todo, dispatch) => {
+    console.log(arguments);
+    dispatch(addTodo(todo));
+  }
+})(TodoAdder);

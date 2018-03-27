@@ -3,7 +3,7 @@ import TodoList from './TodoList';
 
 function mapStateToProps(state) {
   return {
-    todos: state
+    todos: state.todos
   };
 }
 

@@ -1,29 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Field } from 'redux-form';
 
-export default class TodoAdder extends Component {
-  state = { text: '', description: '' };
-
-  onChange = ev => {
-    this.setState({ [ev.target.name]: ev.target.value });
-  };
-
-  onSubmit = ev => {
-    ev.preventDefault();
-    this.props.addTodo(this.state);
-    this.setState({ text: '', description: '' });
-  };
-
-  render() {
-    const { text, description } = this.state;
-
-    return (
-      <form onChange={this.onChange} onSubmit={this.onSubmit}>
-        <label>Title</label>
-        <input name="text" value={text} />
-        <label>Description</label>
-        <input name="description" value={description} />
-        <button>Add Todo</button>
-      </form>
-    );
-  }
+export default function TodoAdder({ handleSubmit }) {
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Title</label>
+      <Field name="text" component="input" />
+      <label>Description</label>
+      <Field name="description" component="input" />
+      <button>Add Todo</button>
+    </form>
+  );
 }
