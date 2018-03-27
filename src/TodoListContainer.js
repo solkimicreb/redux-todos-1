@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import TodoList from './TodoList';
+import { getTodos } from './actions';
 
 function mapStateToProps(state) {
   return {
@@ -8,4 +9,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(TodoList);
+function mapDispatchToProps(dispatch) {
+  return {
+    getTodos: () => dispatch(getTodos())
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

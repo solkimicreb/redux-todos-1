@@ -5,8 +5,5 @@ import { reduxForm } from 'redux-form';
 
 export default reduxForm({
   form: 'newTodo',
-  onSubmit: (todo, dispatch, form) => {
-    dispatch(addTodo(todo));
-    form.reset();
-  }
+  onSubmit: (todo, dispatch, props) => dispatch(addTodo(todo))
 })(TodoAdder);
